@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talentia - Portal de Registro Corporativo</title>
+    <!-- Hoja de Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons via CDN (para iconos vectoriales modernos y limpios) -->
+    <script src="https://unpkg.com/lucide@latest" crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <!-- Grilla de Fondo Dinámica -->
+    <div class="background-grid"></div>
+
+    <!-- Contenedor Principal (SPA Card) -->
+    <div class="portal-card" id="portal-card">
+        
+        <!-- Logo Corporativo Premium -->
+        <div class="logo-container">
+            <a href="#" class="logo-link" id="logo-home-btn" title="Volver al inicio">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Nodo central conectado a nodos superiores y laterales -->
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <span class="logo-text">Talentia</span>
+            </a>
+        </div>
+
+        <!-- ================= VISTA DE BIENVENIDA ================= -->
+        <div class="view active" id="view-welcome">
+            <div class="welcome-header">
+                <h1>Únete a Talentia</h1>
+                <p>Selecciona el tipo de cuenta para comenzar tu registro corporativo y conectar con las mejores oportunidades.</p>
+            </div>
+            
+            <div class="roles-grid">
+                <!-- Tarjeta para Empresas -->
+                <button class="role-btn" id="btn-role-empresa" aria-label="Registrarse como Empresa">
+                    <div class="role-icon-wrapper">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="10" width="20" height="12" rx="2" ry="2"></rect>
+                            <path d="M12 22V10"></path>
+                            <path d="M12 2a4 4 0 0 1 4 4v4H8V6a4 4 0 0 1 4-4z"></path>
+                        </svg>
+                    </div>
+                    <div class="role-info">
+                        <div class="role-title">Soy una Empresa</div>
+                        <div class="role-desc">Publica ofertas de trabajo, gestiona tus candidatos y encuentra el talento ideal para tu equipo.</div>
+                    </div>
+                    <div class="role-arrow">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </button>
+
+                <!-- Tarjeta para Candidatos -->
+                <button class="role-btn" id="btn-role-candidato" aria-label="Registrarse como Candidato">
+                    <div class="role-icon-wrapper">
+                        <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="role-info">
+                        <div class="role-title">Soy un Candidato</div>
+                        <div class="role-desc">Crea tu portafolio profesional, aplica a vacantes exclusivas y da el siguiente gran paso en tu carrera.</div>
+                    </div>
+                    <div class="role-arrow">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= VISTA REGISTRO EMPRESA ================= -->
+        <div class="view" id="view-form-empresa">
+            <div class="form-header">
+                <button class="back-btn btn-go-welcome" aria-label="Volver a la selección de rol">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <div class="form-header-title">
+                    <h2>Registro de Empresa</h2>
+                    <p>Crea el perfil corporativo para tu organización.</p>
+                </div>
+            </div>
+
+            <form id="form-empresa" novalidate>
+                <div class="form-grid">
+                    <!-- Nombre de Empresa -->
+                    <div class="input-group">
+                        <input type="text" id="empresa-nombre" name="nombre" placeholder=" " required>
+                        <label for="empresa-nombre">Nombre de la Empresa</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Ingresa el nombre comercial o razón social.
+                        </div>
+                    </div>
+
+                    <!-- Correo Corporativo -->
+                    <div class="input-group">
+                        <input type="email" id="empresa-email" name="email" placeholder=" " required>
+                        <label for="empresa-email">Correo Electrónico Corporativo</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Ingresa un correo institucional válido.
+                        </div>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="input-group">
+                        <input type="tel" id="empresa-telefono" name="telefono" placeholder=" " required>
+                        <label for="empresa-telefono">Teléfono de Contacto</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Ingresa un número telefónico de 10 dígitos.
+                        </div>
+                    </div>
+
+                    <!-- Fila de Selección Múltiple -->
+                    <div class="form-row">
+                        <!-- Sector de la Industria -->
+                        <div class="input-group">
+                            <select id="empresa-sector" name="sector" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="tecnologia">Tecnología y Software</option>
+                                <option value="finanzas">Finanzas y Banca</option>
+                                <option value="salud">Salud y Farma</option>
+                                <option value="educacion">Educación y EdTech</option>
+                                <option value="logistica">Logística y Operaciones</option>
+                                <option value="otro">Otro Sector</option>
+                            </select>
+                            <label for="empresa-sector">Sector Industrial</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Selecciona un sector.
+                            </div>
+                        </div>
+
+                        <!-- Tamaño de Empresa -->
+                        <div class="input-group">
+                            <select id="empresa-tamano" name="tamano" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="micro">1 - 10 empleados</option>
+                                <option value="pequena">11 - 50 empleados</option>
+                                <option value="mediana">51 - 200 empleados</option>
+                                <option value="grande">Más de 200 empleados</option>
+                            </select>
+                            <label for="empresa-tamano">Tamaño de Empresa</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Selecciona un rango.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="input-group">
+                        <input type="password" id="empresa-password" name="password" placeholder=" " required minlength="8">
+                        <label for="empresa-password">Contraseña</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Mínimo 8 caracteres, números y letras.
+                        </div>
+                    </div>
+
+                    <!-- Confirmar Contraseña -->
+                    <div class="input-group">
+                        <input type="password" id="empresa-password-conf" name="passwordConfirm" placeholder=" " required>
+                        <label for="empresa-password-conf">Confirmar Contraseña</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Las contraseñas no coinciden.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="checkbox-group" style="margin-bottom: 24px;">
+                    <label class="checkbox-container">
+                        Acepto los <a href="#" onclick="event.preventDefault(); alert('Términos y Condiciones');">Términos y Condiciones</a> y la <a href="#" onclick="event.preventDefault(); alert('Política de Privacidad');">Política de Privacidad</a> de Talentia.
+                        <input type="checkbox" id="empresa-terminos" required>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btn-submit-empresa">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Registrar Empresa</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- ================= VISTA REGISTRO CANDIDATO ================= -->
+        <div class="view" id="view-form-candidato">
+            <div class="form-header">
+                <button class="back-btn btn-go-welcome" aria-label="Volver a la selección de rol">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <div class="form-header-title">
+                    <h2>Registro de Candidato</h2>
+                    <p>Crea tu perfil y accede a miles de ofertas.</p>
+                </div>
+            </div>
+
+            <form id="form-candidato" novalidate>
+                <div class="form-grid">
+                    <!-- Nombre Completo -->
+                    <div class="input-group">
+                        <input type="text" id="candidato-nombre" name="nombre" placeholder=" " required>
+                        <label for="candidato-nombre">Nombre Completo</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Por favor ingresa tu nombre y apellido.
+                        </div>
+                    </div>
+
+                    <!-- Correo Electrónico -->
+                    <div class="input-group">
+                        <input type="email" id="candidato-email" name="email" placeholder=" " required>
+                        <label for="candidato-email">Correo Electrónico Personal</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Ingresa un correo electrónico válido.
+                        </div>
+                    </div>
+
+                    <!-- Fila de Especialidad y Teléfono -->
+                    <div class="form-row">
+                        <!-- Área de Especialidad -->
+                        <div class="input-group">
+                            <select id="candidato-especialidad" name="especialidad" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="desarrollo">Tecnología y Software</option>
+                                <option value="diseno">Diseño y UX/UI</option>
+                                <option value="marketing">Marketing y Contenidos</option>
+                                <option value="ventas">Ventas y Comercial</option>
+                                <option value="logistica">Logística y Reparto</option>
+                                <option value="otro">Otras Profesiones</option>
+                            </select>
+                            <label for="candidato-especialidad">Área Profesional</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Selecciona tu especialidad.
+                            </div>
+                        </div>
+
+                        <!-- Teléfono de contacto -->
+                        <div class="input-group">
+                            <input type="tel" id="candidato-telefono" name="telefono" placeholder=" " required>
+                            <label for="candidato-telefono">Teléfono Celular</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Teléfono válido de 10 dígitos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="input-group">
+                        <input type="password" id="candidato-password" name="password" placeholder=" " required minlength="8">
+                        <label for="candidato-password">Contraseña</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Mínimo 8 caracteres, números y letras.
+                        </div>
+                    </div>
+
+                    <!-- Confirmar Contraseña -->
+                    <div class="input-group">
+                        <input type="password" id="candidato-password-conf" name="passwordConfirm" placeholder=" " required>
+                        <label for="candidato-password-conf">Confirmar Contraseña</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Las contraseñas no coinciden.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Términos y Condiciones -->
+                <div class="checkbox-group" style="margin-bottom: 24px;">
+                    <label class="checkbox-container">
+                        Acepto los <a href="#" onclick="event.preventDefault(); alert('Términos y Condiciones');">Términos y Condiciones</a> y la <a href="#" onclick="event.preventDefault(); alert('Política de Privacidad');">Política de Privacidad</a> de Talentia.
+                        <input type="checkbox" id="candidato-terminos" required>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btn-submit-candidato">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Registrarme como Candidato</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- ================= VISTA INICIO DE SESIÓN ================= -->
+        <div class="view" id="view-login">
+            <div class="form-header">
+                <button class="back-btn btn-go-welcome" aria-label="Volver a la selección de rol">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <div class="form-header-title">
+                    <h2>Ingresar a Talentia</h2>
+                    <p>Accede con tus credenciales de usuario.</p>
+                </div>
+            </div>
+
+            <form id="form-login" novalidate>
+                <div class="form-grid">
+                    <!-- Correo de login -->
+                    <div class="input-group">
+                        <input type="email" id="login-email" name="email" placeholder=" " required>
+                        <label for="login-email">Correo Electrónico</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Por favor ingresa un correo válido.
+                        </div>
+                    </div>
+
+                    <!-- Contraseña de login -->
+                    <div class="input-group">
+                        <input type="password" id="login-password" name="password" placeholder=" " required>
+                        <label for="login-password">Contraseña</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            La contraseña es requerida.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkbox-group" style="margin-bottom: 24px; justify-content: space-between; align-items: center; width: 100%;">
+                    <label class="checkbox-container">
+                        Recordar sesión en este equipo
+                        <input type="checkbox" id="login-remember">
+                        <span class="checkmark"></span>
+                    </label>
+                    <a href="#" onclick="event.preventDefault(); alert('Olvidé mi contraseña');" style="font-size: 13px; color: var(--color-primary); text-decoration: none;">¿La olvidaste?</a>
+                </div>
+
+                <button type="submit" class="btn-submit" id="btn-submit-login">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Iniciar Sesión</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- ================= VISTA REGISTRO EXITOSO ================= -->
+        <div class="view" id="view-success">
+            <div class="success-card">
+                <div class="success-icon-wrapper">
+                    <svg viewBox="0 0 24 24" width="42" height="42" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <h2>¡Registro Completado!</h2>
+                <p>Te damos la bienvenida a Talentia. Hemos enviado un correo de validación a <br><span class="success-email" id="success-email-text"></span>.<br><br>Por favor revisa tu correo para activar tu perfil profesional.</p>
+                
+                <button type="button" class="btn-submit" id="btn-success-action" style="margin-top: 16px; width: 100%;">
+                    <span class="btn-text" id="btn-success-action-text">Ir al Perfil</span>
+                </button>
+                
+                <button type="button" class="footer-link btn-go-welcome" style="margin-top: 18px; border: none; background: none; font-size: 13px; color: var(--color-text-muted); cursor: pointer; display: inline-flex; justify-content: center; width: 100%;">
+                    <span>Volver al Inicio</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= BOTÓN FOOTER (YA TENGO CUENTA) ================= -->
+        <footer class="portal-footer" id="portal-footer">
+            <button class="footer-link" id="footer-toggle-btn">
+                ¿Ya tienes una cuenta? <span>Inicia sesión</span>
+            </button>
+        </footer>
+
+    </div>
+
+    <!-- Script Lógico -->
+    <script src="app.js"></script>
+</body>
+</html>

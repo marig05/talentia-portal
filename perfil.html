@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil Profesional - Talentia</title>
+    <!-- Hoja de Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest" crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <!-- Grilla de Fondo -->
+    <div class="background-grid"></div>
+
+    <!-- Contenedor Principal (SPA Card con clase wide para más espacio) -->
+    <div class="portal-card wide" id="portal-card">
+        
+        <!-- Encabezado / Logo y Cerrar Sesión -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; width: 100%;">
+            <div class="logo-container" style="margin-bottom: 0;">
+                <a href="#" class="logo-link" id="logo-home-btn" title="Volver al inicio">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Talentia</span>
+                </a>
+            </div>
+            
+            <a href="index.html" class="footer-link" style="border: none; padding: 0; background: none; font-size: 13px; color: var(--color-text-muted);" title="Cerrar sesión actual">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(224, 224, 224, 0.4); margin-bottom: 28px;">
+
+        <!-- Vista de Perfil -->
+        <div class="view active" id="view-perfil">
+            <div class="welcome-header" style="text-align: left; margin-bottom: 24px;">
+                <h1 style="font-size: 24px;">Mi Perfil Profesional</h1>
+                <p>Mantén tus datos actualizados para que las empresas puedan contactarte fácilmente.</p>
+            </div>
+
+            <!-- Avatar del Candidato -->
+            <div class="avatar-section">
+                <div class="avatar-placeholder" id="avatar-monogram">C</div>
+                <div class="avatar-subtitle" id="avatar-email-text">candidato@correo.com</div>
+            </div>
+
+            <!-- Formulario de Datos Personales -->
+            <form id="form-perfil" novalidate>
+                <div class="form-grid">
+                    <!-- Nombre Completo -->
+                    <div class="input-group">
+                        <input type="text" id="perfil-nombre" name="nombre" placeholder=" " required>
+                        <label for="perfil-nombre">Nombre Completo</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Por favor ingresa tu nombre y apellido.
+                        </div>
+                    </div>
+
+                    <!-- Teléfono y Ubicación en la misma fila -->
+                    <div class="form-row">
+                        <!-- Teléfono -->
+                        <div class="input-group">
+                            <input type="tel" id="perfil-telefono" name="telefono" placeholder=" " required>
+                            <label for="perfil-telefono">Teléfono Celular</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Ingresa un número de 10 dígitos.
+                            </div>
+                        </div>
+
+                        <!-- Ubicación -->
+                        <div class="input-group">
+                            <input type="text" id="perfil-ubicacion" name="ubicacion" placeholder=" " required>
+                            <label for="perfil-ubicacion">Ubicación (Ciudad, País)</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Ingresa tu ciudad y país actual.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE CARGA DE DOCUMENTOS -->
+                <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--color-text-main);">Documentos del Candidato</h3>
+                
+                <div class="file-uploads-container">
+                    
+                    <!-- 1. Currículum (PDF) -->
+                    <div class="file-upload-item" id="item-cv">
+                        <div class="file-upload-info">
+                            <span class="file-upload-title">Subir Currículum (PDF)</span>
+                            <span class="file-upload-name" id="name-cv">Ningún archivo seleccionado (Formato PDF)</span>
+                        </div>
+                        <div class="file-upload-actions">
+                            <input type="file" id="input-cv" accept=".pdf" style="display: none;">
+                            <button type="button" class="btn-upload-file" onclick="document.getElementById('input-cv').click();">Subir Archivo</button>
+                            <div class="upload-status-icon" id="status-cv" title="Pendiente de carga">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Carta de Presentación -->
+                    <div class="file-upload-item" id="item-carta-pres">
+                        <div class="file-upload-info">
+                            <span class="file-upload-title">Subir Carta de Presentación</span>
+                            <span class="file-upload-name" id="name-carta-pres">Ningún archivo seleccionado (PDF, DOCX)</span>
+                        </div>
+                        <div class="file-upload-actions">
+                            <input type="file" id="input-carta-pres" accept=".pdf,.docx,.doc" style="display: none;">
+                            <button type="button" class="btn-upload-file" onclick="document.getElementById('input-carta-pres').click();">Subir Archivo</button>
+                            <div class="upload-status-icon" id="status-carta-pres" title="Pendiente de carga">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Cartas de Recomendación -->
+                    <div class="file-upload-item" id="item-carta-rec">
+                        <div class="file-upload-info">
+                            <span class="file-upload-title">Subir Cartas de Recomendación</span>
+                            <span class="file-upload-name" id="name-carta-rec">Ningún archivo seleccionado (PDF, JPG, PNG)</span>
+                        </div>
+                        <div class="file-upload-actions">
+                            <input type="file" id="input-carta-rec" accept=".pdf,.docx,.doc,.jpg,.jpeg,.png" style="display: none;">
+                            <button type="button" class="btn-upload-file" onclick="document.getElementById('input-carta-rec').click();">Subir Archivo</button>
+                            <div class="upload-status-icon" id="status-carta-rec" title="Pendiente de carga">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botón de Guardado Final -->
+                <button type="submit" class="btn-submit" id="btn-save-profile" style="margin-top: 12px;">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Guardar Perfil</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Contenedor para Notificaciones Flotantes (Toasts) -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Script Lógico de Perfil -->
+    <script src="perfil.js"></script>
+</body>
+</html>
