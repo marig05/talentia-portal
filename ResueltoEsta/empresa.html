@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Empresa - ResueltoEsta</title>
+    <!-- Hoja de Estilos -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest" crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <!-- Grilla de Fondo -->
+    <div class="background-grid"></div>
+
+    <!-- Contenedor Principal (SPA Card con clase wide para más espacio) -->
+    <div class="portal-card wide" id="portal-card">
+        
+        <!-- Encabezado / Logo y Cerrar Sesión -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; width: 100%;">
+            <div class="logo-container" style="margin-bottom: 0;">
+                <a href="#" class="logo-link" id="logo-home-btn" title="Volver al inicio">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <span class="logo-text">ResueltoEsta</span>
+                </a>
+            </div>
+            
+            <a href="index.html" class="footer-link" style="border: none; padding: 0; background: none; font-size: 13px; color: var(--color-text-muted);" title="Cerrar sesión actual">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(224, 224, 224, 0.4); margin-bottom: 28px;">
+
+        <!-- Vista de Panel de Empresa -->
+        <div class="view active" id="view-empresa">
+            
+            <div class="welcome-header" style="text-align: left; margin-bottom: 24px;">
+                <h1 style="font-size: 24px;">Publicar Oferta Laboral</h1>
+                <p>Ingresa los detalles del puesto para publicar una vacante y comenzar a recibir postulaciones de candidatos calificados.</p>
+            </div>
+
+            <!-- Formulario de Publicación de Ofertas -->
+            <form id="form-vacante" novalidate>
+                <div class="form-grid">
+                    
+                    <!-- Título del Cargo -->
+                    <div class="input-group">
+                        <input type="text" id="vacante-titulo" name="titulo" placeholder=" " required>
+                        <label for="vacante-titulo">Título del Cargo</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Por favor ingresa el título del cargo (ej. Diseñador UI).
+                        </div>
+                    </div>
+
+                    <!-- Descripción del Puesto -->
+                    <div class="input-group">
+                        <textarea id="vacante-descripcion" name="descripcion" placeholder=" " required></textarea>
+                        <label for="vacante-descripcion">Descripción del puesto</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Ingresa una descripción del rol y las responsabilidades.
+                        </div>
+                    </div>
+
+                    <!-- Requisitos Clave -->
+                    <div class="input-group">
+                        <textarea id="vacante-requisitos" name="requisitos" placeholder=" " required></textarea>
+                        <label for="vacante-requisitos">Requisitos clave</label>
+                        <div class="error-message">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            Especifica la formación o habilidades necesarias.
+                        </div>
+                    </div>
+
+                    <!-- Salario Ofrecido y Tipo de Jornada en la misma fila -->
+                    <div class="form-row">
+                        <!-- Salario Rango -->
+                        <div class="input-group">
+                            <input type="text" id="vacante-salario" name="salario" placeholder=" " required>
+                            <label for="vacante-salario">Salario ofrecido (rango)</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Ingresa un rango salarial (ej. $35,000 - $45,000).
+                            </div>
+                        </div>
+
+                        <!-- Tipo de Jornada -->
+                        <div class="input-group">
+                            <select id="vacante-jornada" name="jornada" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="Completa">Jornada Completa</option>
+                                <option value="Media">Media Jornada</option>
+                                <option value="Remoto">Trabajo Remoto</option>
+                                <option value="Temporal">Temporal / Por Proyecto</option>
+                                <option value="Prácticas">Prácticas / Becario</option>
+                            </select>
+                            <label for="vacante-jornada">Tipo de jornada</label>
+                            <div class="error-message">
+                                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                Selecciona un tipo de jornada laboral.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botón Principal de Envío -->
+                <button type="submit" class="btn-submit" id="btn-submit-vacante" style="margin-top: 12px;">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Publicar Vacante</span>
+                </button>
+            </form>
+
+            <!-- Historial de Vacantes Publicadas -->
+            <div class="job-list-section">
+                <div class="job-list-header">
+                    <h3>Mis Vacantes Activas</h3>
+                    <span class="job-list-count" id="job-count">1 Oferta</span>
+                </div>
+
+                <div class="job-list-container" id="job-list-container">
+                    <!-- Vacante Inicial por Defecto -->
+                    <div class="vacancy-card">
+                        <div class="vacancy-card-header">
+                            <div class="vacancy-card-title">Desarrollador Full Stack Senior</div>
+                            <span class="vacancy-card-badge">Trabajo Remoto</span>
+                        </div>
+                        <p class="vacancy-card-desc">Buscamos un desarrollador senior con experiencia en Node.js y React para liderar nuestro equipo de tecnología de portal de empleo.</p>
+                        <div class="vacancy-card-meta">
+                            <div class="vacancy-card-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                                <span>Publicado Hoy</span>
+                            </div>
+                            <div class="vacancy-card-meta-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                <span>$60,000 - $80,000 MXN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Botón de Acción Flotante (FAB) Requerido -->
+    <button class="fab-btn" id="fab-publish-btn" aria-label="Publicar vacante rápidamente" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span class="fab-tooltip">Publicar Vacante</span>
+    </button>
+
+    <!-- Contenedor para Notificaciones Flotantes (Toasts) -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Script Lógico de Empresa -->
+    <script src="empresa.js"></script>
+</body>
+</html>
