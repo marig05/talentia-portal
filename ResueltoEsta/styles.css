@@ -696,9 +696,31 @@ body {
     border: 3px solid #ffffff;
     box-shadow: var(--shadow-sm);
     transition: transform var(--transition-fast);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .avatar-placeholder:hover {
+    transform: scale(1.03);
+}
+
+.btn-upload-avatar {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-top: 6px;
+}
+
+.btn-upload-avatar:hover {
+    background-color: var(--color-primary);
+    color: #ffffff;
     transform: scale(1.03);
 }
 

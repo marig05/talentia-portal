@@ -208,4 +208,53 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 400);
         }, 3000);
     }
+
+    // --- 5. Leer parámetros URL y prellenar información de la empresa ---
+    function loadUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const nameParam = urlParams.get("nombre");
+        
+        const companyNameText = document.getElementById("company-name-text");
+        const companyLogoPlaceholder = document.getElementById("company-logo-placeholder");
+
+        if (nameParam) {
+            const cleanName = decodeURIComponent(nameParam).trim();
+            if (companyNameText) {
+                companyNameText.textContent = cleanName;
+            }
+            if (companyLogoPlaceholder && cleanName.length > 0) {
+                companyLogoPlaceholder.textContent = cleanName.charAt(0).toUpperCase();
+            }
+        }
+    }
+
+    // --- 6. Carga interactiva de Logo de la Empresa ---
+    const btnUploadLogo = document.getElementById("btn-upload-company-logo");
+    const logoInput = document.getElementById("company-logo-input");
+    const logoPlaceholder = document.getElementById("company-logo-placeholder");
+
+    if (btnUploadLogo && logoInput && logoPlaceholder) {
+        btnUploadLogo.addEventListener("click", () => {
+            logoInput.click();
+        });
+
+        logoInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                if (!file.type.startsWith("image/")) {
+                    showToast("Por favor selecciona una imagen.");
+                    return;
+                }
+
+                const imageUrl = URL.createObjectURL(file);
+                logoPlaceholder.style.backgroundImage = `url('${imageUrl}')`;
+                logoPlaceholder.textContent = ""; // Ocultar monograma
+                
+                showToast("¡Logo corporativo cargado con éxito!");
+            }
+        });
+    }
+
+    // Inicializar carga de parámetros
+    loadUrlParams();
 });

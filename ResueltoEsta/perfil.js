@@ -228,6 +228,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }
 
+    // --- 6. Carga de Foto de Perfil de Candidato ---
+    const btnUploadPhoto = document.getElementById("btn-upload-candidato-photo");
+    const photoInput = document.getElementById("candidato-photo-input");
+
+    if (btnUploadPhoto && photoInput && avatarMonogram) {
+        btnUploadPhoto.addEventListener("click", () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                if (!file.type.startsWith("image/")) {
+                    showToast("Por favor selecciona una imagen.");
+                    return;
+                }
+
+                const imageUrl = URL.createObjectURL(file);
+                avatarMonogram.style.backgroundImage = `url('${imageUrl}')`;
+                avatarMonogram.textContent = ""; // Ocultar inicial monograma
+                
+                showToast("¡Foto de perfil cargada con éxito!");
+            }
+        });
+    }
+
     // Inicializar lectura de parámetros al cargar
     loadUrlParams();
 });
