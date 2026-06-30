@@ -351,14 +351,26 @@ document.addEventListener("DOMContentLoaded", () => {
             submitBtn.classList.remove("loading");
             submitBtn.disabled = false;
             
-            const email = document.getElementById("login-email").value;
+            const email = document.getElementById("login-email").value.trim().toLowerCase();
+            const contrasena = document.getElementById("login-password").value;
+            const loginRole = document.getElementById("login-role").value;
+            
             resetAllForms();
             
-            // Redirección inteligente simulada basada en el correo de login
-            if (email.toLowerCase().includes("empresa")) {
-                window.location.href = `empresa.html?nombre=Empresa%20Demo&email=${encodeURIComponent(email)}`;
+            // Validación de credenciales de prueba del usuario (marigar05@gmail.con y marigar05@gmail.com con clave 1234)
+            if ((email === "marigar05@gmail.con" || email === "marigar05@gmail.com") && contrasena === "1234") {
+                if (loginRole === "empresa") {
+                    window.location.href = `empresa.html?nombre=Mari%20Empresa&email=${encodeURIComponent(email)}`;
+                } else {
+                    window.location.href = `perfil.html?nombre=Mari%20Trabajador&email=${encodeURIComponent(email)}&telefono=5512345678`;
+                }
             } else {
-                window.location.href = `perfil.html?nombre=Candidato%20Demo&email=${encodeURIComponent(email)}&telefono=5512345678`;
+                // Validación para cualquier otro correo (comportamiento por defecto)
+                if (loginRole === "empresa" || email.includes("empresa")) {
+                    window.location.href = `empresa.html?nombre=Empresa%20Demo&email=${encodeURIComponent(email)}`;
+                } else {
+                    window.location.href = `perfil.html?nombre=Candidato%20Demo&email=${encodeURIComponent(email)}&telefono=5512345678`;
+                }
             }
         }, 1200);
     });
